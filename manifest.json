@@ -1,0 +1,15 @@
+{
+  "short_name": "React App",
+  "name": "Chrome Tab Limit",
+  "manifest_version": 2,
+  "start_url": "./index.html",
+  "version": "1.0",
+  "display": "standalone",
+  "permissions": [ "storage", "alarms", "tabs" ],
+  "background": {
+    "scripts": [ "background.js" ],
+    "persistent": false
+  },
+  "browser_action": {},
+  "theme_color": "#008B8B"
+}
