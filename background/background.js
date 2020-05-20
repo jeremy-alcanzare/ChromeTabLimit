@@ -8,15 +8,16 @@ const Colors = {
 Object.freeze(Colors);
 
 chrome.browserAction.setTitle({title:"Tab Limit: 10"});
-initializeTabNumber();
-determineState();
+initializeTabNumber() 
+//sets badge to teal
+chrome.browserAction.setBadgeBackgroundColor({ color: Colors.GREEN });
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse){
         if(request.greeting != null) {
         	limit = request.greeting;
         	chrome.browserAction.setTitle({title:"Tab Limit: " + limit});
-        	determineState();
+        	determineColor();
         };
         response(request.greeting);
         return true;
@@ -28,13 +29,17 @@ chrome.runtime.onMessage.addListener(
 chrome.tabs.onCreated.addListener(function(tab)
 {
 updateTabNumber(1);
-determineState();
+determineColor();
+if (currentTabNumber > limit) {
+	disableTabCreation(tab);
+	chrome.browserAction.setBadgeBackgroundColor({ color: Colors.RED });
+	}
 });
 
 chrome.tabs.onRemoved.addListener(function(tab)
 {
 updateTabNumber(-1);
-determineState();
+determineColor();
 });
 
 function initializeTabNumber() {
@@ -57,15 +62,17 @@ function disableTabCreation(tab) {
 	chrome.tabs.remove(tab.id)
 }
 
-function determineState() {	
+function determineColor() {	
 if (limit > 3 && currentTabNumber > limit - 3 && currentTabNumber < limit) {
 	chrome.browserAction.setBadgeBackgroundColor({ color: Colors.YELLOW });
 }
 else if (currentTabNumber < limit) {
 	chrome.browserAction.setBadgeBackgroundColor({ color: Colors.GREEN });
 }
-if (currentTabNumber >= limit) {
+if (currentTabNumber == limit) {
 	chrome.browserAction.setBadgeBackgroundColor({ color: Colors.RED });
-	disableTabCreation(tab);
+}
+if (currentTabNumber > limit) {
+	chrome.browserAction.setBadgeBackgroundColor({ color: Colors.RED });
 }
 }

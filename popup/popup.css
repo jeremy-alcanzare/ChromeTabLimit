@@ -1,0 +1,20 @@
+body {
+font-family: 'Jost', sans-serif;
+border-radius: 25px;
+}
+button {
+border-radius: 25px;
+border:none;
+position: relative;
+top: 5px;
+}
+div {
+position: relative;
+left: 41px;
+}
+button:hover {
+background-color: rgba(59, 196, 176, 1);
+}
+button:active {
+background-color: rgba(89, 226, 206, 1);
+}
