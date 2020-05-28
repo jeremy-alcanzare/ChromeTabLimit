@@ -2,7 +2,7 @@ var currentTabNumber = 1;
 var limit = 10;
 const Colors = {
    GREEN: [59, 196, 176, 255],
-   YELLOW: [222, 222, 31, 255] ,
+   YELLOW: [196, 196, 22, 255] ,
    RED: [235, 52, 52, 255],
 };
 Object.freeze(Colors);

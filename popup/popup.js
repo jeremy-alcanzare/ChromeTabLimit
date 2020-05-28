@@ -10,7 +10,7 @@ function sendData() {
 		value = input.value;
 	}
 	else {
-		alert("Please enter a valid number");
+		tabLimitText.innerHTML = "Please enter a valid number.";
 		return;
 	}
     chrome.runtime.sendMessage({greeting: value},

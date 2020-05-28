@@ -7,10 +7,11 @@
   "display": "standalone",
   "permissions": [ "storage", "alarms", "tabs" ],
   "browser_action": {
-    "default_popup" : "./popup/popup.html"
+    "default_popup" : "./popup/popup.html",
+    "default_icon" : "./popup/popupIcon.png"
   },
   "background": {
-    "scripts": [ "./background/background.js", "./popup/popup.js" ],
+    "scripts": [ "./background/background.js", "./popup/popup.js"],
     "persistent": true
   },
   "theme_color": "#008B8B"
