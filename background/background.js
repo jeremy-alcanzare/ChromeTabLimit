@@ -1,5 +1,4 @@
 var currentTabNumber = 1;
-var limit = 10;
 const Colors = {
    GREEN: [59, 196, 176, 255],
    YELLOW: [196, 196, 22, 255] ,
@@ -7,18 +6,32 @@ const Colors = {
 };
 Object.freeze(Colors);
 
-chrome.browserAction.setTitle({title:"Tab Limit: 10"});
-initializeTabNumber() 
+chrome.storage.sync.get(['storedValue'], function(result) {
+if (result.storedValue != null) {
+	var limit = result.storedValue;
+}
+else {
+	var limit = 10;
+}
+chrome.browserAction.setTitle({title:"Tab Limit: " + limit});
+initializeTabNumber(); 
+});
+
 //sets badge to teal
 chrome.browserAction.setBadgeBackgroundColor({ color: Colors.GREEN });
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse){
-        if(request.greeting != null) {
+        if (request.greeting != null && request.type == "send") {
         	limit = request.greeting;
         	chrome.browserAction.setTitle({title:"Tab Limit: " + limit});
         	determineColor();
-        };
+        } else if (request.greeting != null && request.type == "save") {
+        	limit = request.greeting;
+        	chrome.storage.sync.set({storedValue: limit});
+        	chrome.browserAction.setTitle({title:"Tab Limit: " + limit});
+        	determineColor();        	
+        }
         response(request.greeting);
         return true;
     }

@@ -1,14 +1,15 @@
 {
-  "short_name": "React App",
+  "short_name": "Tab Limit",
   "name": "Chrome Tab Limit",
   "manifest_version": 2,
   "start_url": "./index.html",
   "version": "1.0",
   "display": "standalone",
   "permissions": [ "storage", "alarms", "tabs" ],
+  "icons": { "128": "ChromeTabLimitLogo128.png" },
   "browser_action": {
     "default_popup" : "./popup/popup.html",
-    "default_icon" : "./popup/popupIcon.png"
+    "default_icon" : "./popup/popupIcon32.png"
   },
   "background": {
     "scripts": [ "./background/background.js", "./popup/popup.js"],
