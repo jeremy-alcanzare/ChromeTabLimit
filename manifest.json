@@ -6,7 +6,7 @@
   "version": "1.0",
   "display": "standalone",
   "permissions": [ "storage", "alarms", "tabs" ],
-  "icons": { "128": "ChromeTabLimitLogo128.png" },
+  "icons": { "128": "ChromeTabLimitIcon128.png" },
   "browser_action": {
     "default_popup" : "./popup/popup.html",
     "default_icon" : "./popup/popupIcon32.png"
