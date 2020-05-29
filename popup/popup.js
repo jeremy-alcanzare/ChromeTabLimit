@@ -4,6 +4,7 @@ var saveButton = document.getElementById("saveButton");
 var input =  document.getElementById("tabLimit");
 var tabLimitText = document.getElementById("tabLimitText");
 
+
 setButton.onclick = sendData;
 saveButton.onclick = saveData;
 
@@ -12,7 +13,7 @@ function sendData() {
 		value = input.value;
 	}
 	else {
-		tabLimitText.innerHTML = "Please enter a valid number.";
+		tabLimitText.innerHTML = "Please enter a valid number";
 		return;
 	}
     chrome.runtime.sendMessage({greeting: value, type: "send"},
